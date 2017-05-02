@@ -1,0 +1,27 @@
+nginx:
+   build: container/nginx
+   ports:
+       - 7777:80
+   links:
+       - php
+   volumes:
+       - .:/app
+
+database: 
+   image: postgres:9.6-alpine
+   ports:
+       - 7878:5432
+   volumes:
+       - ./container/data:/data/db
+   environment:
+      POSTGRES_PASSWORD: watchdog
+      POSTGRES_DB: watchdog
+      POSTGRES_USER: watchdog
+
+php:
+   build: container/php-fpm
+   volumes:
+       - .:/app
+   links:
+       - database
+   working_dir: /app

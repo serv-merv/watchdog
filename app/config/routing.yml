@@ -1,0 +1,2 @@
+disasters_bundle_controllers:
+    resource: "@DisasterBundle/Resources/config/routing.xml"
