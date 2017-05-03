@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityManager;
  * Class DangerousLevelDetector
  * @package DisasterBundle\Service
  */
-class DangerousLevelDetector
+class DangerousLevelDetector implements DangerousLevelDetectorInterface
 {
     private const RECOGNIZE_DISTANCE = 150;
 
@@ -55,6 +55,7 @@ class DangerousLevelDetector
                 $disasterLevel = $this->getLevelByDistance($disaster, $distance);
                 $disasterDto = $disaster->toDto();
                 $disasterDto->dangerLevel = $disasterLevel;
+                $disasterDto->distanceTo = $distance;
                 $recognizedDisasters[] = $disasterDto;
             }
         }

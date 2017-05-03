@@ -5,6 +5,7 @@
     <services>
         <service id="haversim.calculator"
                  class="DisasterBundle\Service\HaversineFormulaCalculator"/>
+
         <service id="dangerous.level.detector" class="DisasterBundle\Service\DangerousLevelDetector">
             <argument type="service" id="haversim.calculator"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>

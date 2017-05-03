@@ -11,6 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Disaster
  * @package DisasterBundle\Entity
  * @ORM\Entity(repositoryClass="DisasterBundle\Repository\DisasterRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorMap({
+ *          "unrecognized_disaster" = "DisasterBundle\Entity\Disaster",
+ *          "earthquake" = "DisasterBundle\Entity\Earthquake",
+ *          "fire" = "DisasterBundle\Entity\Fire"
+ *     })
  * @ORM\Table("watchdog_disasters")
  */
 class Disaster
@@ -20,55 +26,61 @@ class Disaster
      * @ORM\Id()
      * @ORM\Column(type="string")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var float
      * @ORM\Column(type="float")
      */
-    private $latitude;
+    protected $latitude;
 
     /**
      * @var float
      * @ORM\Column(type="float")
      */
-    private $longitude;
+    protected $longitude;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var array
      * @ORM\Column(type="json_array", nullable=true)
      */
-    private $images;
+    protected $images;
 
     /**
      * @var array
      * @ORM\Column(type="json_array", nullable=true)
      */
-    private $videos;
+    protected $videos;
 
     /**
      * @var float
      * @ORM\Column(type="float", nullable=true)
      */
-    private $safeDistance;
+    protected $safeDistance;
 
     /**
      * @var float
      * @ORM\Column(type="float", nullable=true)
      */
-    private $warningDistance;
+    protected $warningDistance;
 
     /**
      * @var float
      * @ORM\Column(type="float", nullable=true)
      */
-    private $dangerDistance;
+    protected $dangerDistance;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $status;
 
     /**
      * Disaster constructor.
@@ -200,6 +212,22 @@ class Disaster
     public function setDangerDistance(float $dangerDistance)
     {
         $this->dangerDistance = $dangerDistance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
     }
 
     /**

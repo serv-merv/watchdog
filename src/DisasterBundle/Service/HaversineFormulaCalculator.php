@@ -10,7 +10,7 @@ use DisasterBundle\Dto\CoordinatesDto;
  * Class DistanceBasedOnCoordinatesCalculator
  * @package DisasterBundle\Service
  */
-class HaversineFormulaCalculator
+class HaversineFormulaCalculator implements DistanceCalculatorInterface
 {
     private const EARTH_RADIUS = 6371;
 

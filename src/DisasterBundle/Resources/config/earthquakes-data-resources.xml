@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="usgs.data.resource" class="DisasterBundle\Service\DataResource\Earthquake\USGSDataResource"/>
+        <service id="viirs.data.resource" class="DisasterBundle\Service\DataResource\Fire\VIIRSDataResource">
+            <argument type="service" id="ijanki_ftp"/>
+            <argument type="string">%nasa_open_data_login%</argument>
+            <argument type="string">%nasa_open_data_password%</argument>
+        </service>
+    </services>
+</container>

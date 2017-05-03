@@ -37,4 +37,7 @@ final class DisasterDto
 
     /** @var float */
     public $dangerZone;
+
+    /** @var float */
+    public $distanceTo;
 }
