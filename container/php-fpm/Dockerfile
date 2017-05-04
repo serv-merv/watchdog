@@ -11,6 +11,10 @@ RUN groupadd -r backend \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
+#Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash && \
+  apt-get install -y nodejs
+
 # Set timezone
 RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Europe/Kiev /etc/localtime
@@ -30,4 +34,5 @@ RUN echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-
 RUN echo "xdebug.idekey=\"PHPSTORM\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN usermod -u 1000 backend
+EXPOSE 9000 9002
 USER backend

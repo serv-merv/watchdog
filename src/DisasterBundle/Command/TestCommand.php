@@ -26,7 +26,7 @@ class TestCommand extends ContainerAwareCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $sync = $this->getContainer()->get('usgs.resources.sync');
+        $sync = $this->getContainer()->get('viirs.resources.sync');
         $sync->sync();
     }
 }

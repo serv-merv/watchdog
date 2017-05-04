@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DisasterController extends Controller
 {
     /**
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

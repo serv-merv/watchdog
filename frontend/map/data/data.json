@@ -1,0 +1,109 @@
+[{
+		"lat": -3.7436735,
+		"long": -73.2516326,
+		"content": {
+			"description": "Earthquake of M6.0 hits 255km WNW of Iquitos, Peru | USGS | # BREAKING # Earthquake # Peru "
+		},
+		"date_time": "30.04.2017"
+	},
+	{
+		"lat": 23.9408482,
+		"long": 91.9881527,
+		"content": {
+			"description": "Earthquake of magnitude 5.7 on Richter scale jolts, Tripura | Facebook"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 15.976462,
+		"long": -93.213266,
+		"content": {
+			"description": "Earthquake: M4.1 - OFFSHORE CHIAPAS, MEXICO | Earthquake monitor"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 41.7335776,
+		"long": -122.635361,
+		"content": {
+			"description": "A strong earthquake measuring 5.9 on the Richter scale | Facebook | #Earthquake"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": -33.047238,
+		"long": -71.6126885,
+		"content": {
+			"description": "M 4.3 quake: 34km SW of Valparaiso, Chile | Earthquake monitor"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 19.5429151,
+		"long": -155.6658568,
+		"content": {
+			"description": "Earthquake: M3.7 - ISLAND OF HAWAII, HAWAII | Earthquake monitor"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 53.0409109,
+		"long": 158.6777259,
+		"content": {
+			"description": "M 4.9 quake: 158km NE of Petropavlovsk-Kamchatskiy, Russia | Earthquake monitor"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 1.3121235,
+		"long": 128.4849923,
+		"content": {
+			"description": "Earthquake: M5.1 - Halmahera, Indonesia | Earthquake monitor"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 21.521757,
+		"long": -77.781167,
+		"content": {
+			"description": "M 4.2 quake: Cuba region | Eathquake monitor"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 34.8209639,
+		"long": -91.4074535,
+		"content": {
+			"description": "Possible tornado along leading edge of squall line right along I-40 just west of Fredonia, AR | #tornado"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 53.9332706,
+		"long": -116.5765035,
+		"content": {
+			"description": " SNOWFALL WARNING ISSUED by Environment Canada | Alberta Tornado Watch"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": -45.856909,
+		"long": 170.2294936,
+		"content": {
+			"description": "Tsunami follows earthquake of magnitude 7.8 in New Zealand | BBC | #eqnz"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 26.1235841,
+		"long": 127.6658145,
+		"content": {
+			"description": "5.0 earthquake, 144km S of Itoman, Japan | USGS | #japaneq"
+
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 14.8492898,
+		"long": 120.8104117,
+		"content": {
+			"description": "5.6 earthquake, 137km ESE of Pondaguitan, Philippines |Earthquakes tsunamis"
+		},
+		"date_time": "30.04.2017"
+	}, {
+		"lat": 36.7417235,
+		"long": -88.6367154,
+		"content": {
+			"description": "Tornado Warning including Mayfield KY | NWS Tornado"
+		},
+		"date_time": "30.04.2017"
+	}
+]

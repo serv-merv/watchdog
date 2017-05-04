@@ -43,7 +43,7 @@ class DangerousLevelDetector implements DangerousLevelDetectorInterface
         $recognizedDisasters = [];
 
         /** @var Disaster $disaster */
-        foreach ($disasters as $disaster) {
+        foreach ($disasters as $key => $disaster) {
             $toDto = new CoordinatesDto();
             $toDto->latitude = $disaster->getLatitude();
             $toDto->longitude = $disaster->getLongitude();

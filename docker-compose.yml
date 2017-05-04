@@ -20,8 +20,12 @@ database:
 
 php:
    build: container/php-fpm
+   ports:
+       - 9000:9000
+       - 9002:9002
    volumes:
        - .:/app
    links:
        - database
+
    working_dir: /app
