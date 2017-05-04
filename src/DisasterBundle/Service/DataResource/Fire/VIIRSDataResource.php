@@ -62,10 +62,9 @@ class VIIRSDataResource implements ResourceInterface, DangerLevelDetector
                 continue;
             }
             $data = explode(',', $line);
-            $fire = new Fire((float)$data[0], (float)$data[1]);
+            $fire = new Fire((float)$data[0], (float)$data[1], new \DateTime($data[5] . ' ' . $data[6]));
             $fire->setBrightTI4((float)$data[2]);
             $fire->setBrightTI5((float)$data[10]);
-            $fire->setAcqDate(new \DateTime($data[5] . ' ' . $data[6]));
             $fire->setStatus($this->detectDangerLevel($data));
             $dangerRadius = $this->getRadius((float)$data[4]);
             $fire->setDangerDistance($dangerRadius / static::METERS_IN_KILOMETERS);

@@ -83,15 +83,23 @@ class Disaster
     protected $status;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    protected $time;
+
+    /**
      * Disaster constructor.
      * @param float $lat
      * @param float $long
+     * @param \DateTime $dateTime
      */
-    public function __construct(float $lat, float $long)
+    public function __construct(float $lat, float $long, \DateTime $dateTime)
     {
         $this->id = sha1(uniqid('', true));
         $this->latitude = $lat;
         $this->longitude = $long;
+        $this->time = $dateTime;
     }
 
     /**
@@ -244,6 +252,8 @@ class Disaster
         $dto->safeZone = $this->safeDistance;
         $dto->warningZone = $this->warningDistance;
         $dto->dangerZone = $this->dangerDistance;
+        $dto->time = $this->time->format('Y-m-d H:m:i');
+        $dto->type = 'Technical disaster';
         return $dto;
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DisasterBundle\Entity;
 
 
+use DisasterBundle\Dto\DisasterDto;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,12 +26,6 @@ class Fire extends Disaster
      * @ORM\Column(type="float", nullable=true)
      */
     private $brightTI5;
-
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $acqDate;
 
     /**
      * @return float
@@ -65,18 +60,12 @@ class Fire extends Disaster
     }
 
     /**
-     * @return \DateTime
+     * @return DisasterDto
      */
-    public function getAcqDate(): \DateTime
+    public function toDto(): DisasterDto
     {
-        return $this->acqDate;
-    }
-
-    /**
-     * @param \DateTime $acqDate
-     */
-    public function setAcqDate(\DateTime $acqDate)
-    {
-        $this->acqDate = $acqDate;
+        $dto = parent::toDto();
+        $dto->type = 'Fire';
+        return $dto;
     }
 }

@@ -40,4 +40,10 @@ final class DisasterDto
 
     /** @var float */
     public $distanceTo;
+
+    /** @var string */
+    public $time;
+
+    /** @var string */
+    public $type;
 }

@@ -1,7 +1,5 @@
 {
-  "name": "paycore",
-  "description": "A Vue.js project",
-  "author": "yi.shyang@ele.me",
+  "name": "watchdog",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server -d --inline --hot --env.dev",
@@ -14,12 +12,15 @@
     "express": "latest",
     "morgan": "latest",
     "path": "latest",
-    "request": "latest"
+    "request": "latest",
+    "compression": "latest",
+    "yargs": "latest"
   },
   "engines": {
     "node": ">=6"
   },
   "devDependencies": {
+    "reload": "latest",
     "autoprefixer": "^6.6.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",

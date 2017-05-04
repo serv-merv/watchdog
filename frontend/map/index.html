@@ -9,6 +9,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -18,25 +19,19 @@
         @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
 
         html, body, #cesiumContainer {
-            width: 95%;
-            height: 95%;
+            width: 100%;
+            height: 850px;
             margin: 0;
             padding: 0;
             overflow: hidden;
         }
 
         #container {
-            position: absolute;
             top: 5%;
-            left: 30%;
             margin-top: -50px;
             margin-left: -50px;
             width: 50%;
-            height: 105%;
-        }
-
-        #container:hover {
-            background: blue; /* make this whatever you want */
+            height: 150%;
         }
 
         #logo-img {
@@ -47,27 +42,80 @@
 
         .base-container {
             float: left;
-            width: 110%;
+            width: 90%;
             border-radius: 15px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
         }
 
+        .separator {
+            border-bottom: 2px solid #000000;
+            margin-bottom: 10px;
+        }
+
         .draggable {
-            background-color: white;
+            background-color: #f0f0f0;
             z-index: 1000;
         }
-    </style>
 
+        .table-fixed thead {
+            width: 97%;
+        }
+        .table-fixed tbody {
+            height: 230px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        /*.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {*/
+            /*display: block;*/
+        /*}*/
+
+        /*.table-fixed tbody td, .table-fixed thead > tr> th {*/
+            /*float: left;*/
+            /*border-bottom-width: 0;*/
+        /*}*/
+
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: #efefef;
+            text-align: center;
+        }
+
+        .tab-bottom
+        {
+            background-color:#1F1C1C;
+            padding: 20px;
+            text-align:center;
+        }
+        .tab-bottom a
+        {
+            color: white;
+            text-transform: uppercase;
+            font-size:16px;
+            font-weight:bold;
+        }
+        .tab-bottom  i
+        {
+            float:right;
+            font-size: 20px;
+            color:white;
+        }
+
+    </style>
 </head>
-<body>
-<div class="container-fluid">
+<body style="width: 100%; height: 100%;">
+<div>
     <div class="row">
-        <div class="col-sm-3 tab-color">
+        <div class="col-sm-3">
             <div class="page-header" id="watchdog-logo-container">
                 <img id="logo-img" src="../img/logo.png" alt="Nasa Watchdog">
             </div>
-            <div class="base-container draggable" style="cursor: move;">
+            <div class="base-container draggable">
                 <div style="margin: 10px;">
                     <div align="center">
                         <h2>Location</h2>
@@ -84,65 +132,41 @@
                 </div>
             </div>
 
-            <div class="base-container draggable" style="margin-top: 25px; height: 450px; cursor: move">
+            <div class="base-container draggable" style="margin-top: 25px; height: 250px;">
                 <div align="center">
                     <h2>Feed</h2>
                 </div>
                 <div id="tickerContainer tab-color" style="width: 95%; height: 300%; margin-left: 2.5%;">
                     <dl id="ticker" style="width: 100%; height: 25%;">
-                        <dt class="heading">
-                            <img src="data/first_image.jpg" style="width: 100%; height: 200px">
-                        </dt>
-                        <dd class="text">
-                            <div class="item active" style="width: 80%; margin-left:10px;">
-                                <div>Report from #Fez in #Morocco (famous for leather) looks like the edge of a huge CB
-                                    #cloud that triggered the alerts on map 33/30 #eustorm
-                                </div>
-                            </div>
-                        </dd>
-
-                        <dt class="heading">
-                            <img src="data/second_image.jpg" style="width: 100%; height: 200px"></dt>
-                        <dd class="text">
-                            <div class="item" style="width: 80%; margin-left:10px;">
-                                <div style="color:red">111.6mm of #rain so far in #Huelva #Spain this morning #flooding
-                                    underway in many areas! We thank @MPEGrupo & @weatherpablo for the reports.
-                                </div>
-                            </div>
-                        </dd>
-
-                        <dt class="heading">
-                            <img src="data/third_image.jpg" style="width: 100%; height: 200px">
-                        </dt>
-                        <dd class="text">
-                            <div class="item" style="width: 80%; margin-left:10px;">
-                                <div>Giant Earth crack opens up in Northern Cape, South Africa <a
-                                        href="http://buff.ly/2lm8qCj">http://buff.ly/2lm8qCj</a></div>
-                            </div>
-                        </dd>
-
-                        <dt class="heading">
-                            <img src="data/fourth_image.jpg" style="width: 100%; height: 200px">
-                        </dt>
-                        <dd class="text">
-                            <div class="item" style="width: 80%; margin-left:10px;">
-                                <div style="color:orange">Gigantic earth #crack opens up in #Pakistan sparking fears
-                                    among locals <a
-                                            href="http://strangesounds.org/2017/02/gigantic-earth-crack-pakistan-video-sparking-fears-among-locals.html">http://strangesounds.org/2017/02/gigantic-earth-crack-pakistan-video-sparking-fears-among-locals.html</a>
-                                    … via @Strange_Sounds
-                                </div>
-                            </div>
-                        </dd>
                     </dl>
                 </div>
             </div>
-
         </div>
-        <div id="container" class="col-sm-6 tab-color">
+        <div id="container" class="col-sm-6">
             <div id="cesiumContainer" class="col-md-4" style="margin-left: 2.25%;"></div>
         </div>
-        <div class="col-sm-3 tab-color"></div>
+        <div class="col-sm-3" style="margin-left: 1.5%;">
+            <div id="disasters-list" align="center">
+                <h2>Disasters near you</h2>
+                <table class="table table-fixed">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Distance</th>
+                        <th>Type</th>
+                        <th>Risk</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table-top-disasters-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+</div>
+<div class="tab-bottom footer">
+    <a href="javascript:void(0)">Get our mobile application!</a>
+    <a href="https://www.facebook.com/nasawatchdog/"><i class="fa fa-facebook"></i></a>
 </div>
 <script>
 
@@ -152,13 +176,13 @@
          * @type {Cesium.Viewer}
          * initiazlie map
          */
-        var viewer = new Cesium.Viewer('cesiumContainer');
-
+        let viewer = new Cesium.Viewer('cesiumContainer');
+        console.log(viewer);
         getLocation();
 
-        var ticker = $("#ticker");
+        let ticker = $("#ticker");
         ticker.children().filter("dt").each(function () {
-            var dt = $(this),
+            let dt = $(this),
                 container = $("<div>");
             dt.next().appendTo(container);
             dt.prependTo(container);
@@ -166,7 +190,7 @@
         });
         ticker.css("overflow", "hidden");
         function animator(currentItem) {
-            var distance = currentItem.height();
+            let distance = currentItem.height();
             duration = (distance + parseInt(currentItem.css("marginTop"))) / 0.025;
             currentItem.animate({marginTop: -distance}, duration, "linear", function () {
                 currentItem.appendTo(currentItem.parent()).css("marginTop", 0);
@@ -182,6 +206,8 @@
             animator(ticker.children(":first"));
         });
 
+
+        let camera = viewer.camera;
         //draggable widgets
         $(".draggable").draggable({revert: true});
 
@@ -208,9 +234,34 @@
                 }
             })
                 .then(function (response) {
+                    let ticker = $('#ticker');
+                    let table = $('#table-top-disasters-body');
+                    ticker.html('');
+                    table.html('');
                     let data = response.data;
-                    data.forEach(function(item, i ,array) {
-                        console.log(item);
+                    data.forEach(function (item, i, array) {
+                        $('#ticker').append(
+                            "<dt class='heading'>" +
+                            item.dangerLevel +
+                            "</dt>" +
+                            "<dd class='text separator' style='cursor: pointer'>" +
+                            "<div class='item active goto-feed-coord' " +
+                            "style='width: 80%; margin-left:10px;' " +
+                            "latitude=" + item.latitude + " longitude=" + item.longitude + ">" +
+                            "<div>" +
+                            item.description +
+                            "</div>" +
+                            "</div>" +
+                            "</dd>"
+                        );
+                        table.append(
+                            '<tr>' +
+                            '<td>' + 'some_time' + '</td>' +
+                            '<td>' + item.distanceTo + ' km</td>' +
+                            '<td>' + 'disaster' + '</td>' +
+                            '<td>' + item.dangerLevel + '</td>' +
+                            '</tr>'
+                        );
                         let coords = Cesium.Cartesian3.fromDegrees(item.longitude, item.latitude, 0.0);
                         viewer.entities.add({
                             position: coords,
@@ -240,13 +291,24 @@
                             }
                         });
                     });
-                    viewer.zoomTo(viewer.entities);
+                    camera.flyTo({
+                        destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 50000),
+                        duration: 2.0
+                    });
+
+                    $('.goto-feed-coord').on('click', function (e) {
+                        let lat = $(this).attr('latitude');
+                        let long = $(this).attr('longitude');
+                        camera.flyTo({
+                            destination: Cesium.Cartesian3.fromDegrees(long, lat, 5000),
+                            duration: 2.0
+                        });
+                    });
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         });
-
     });
 
     function getLocation() {

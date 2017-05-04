@@ -44,7 +44,8 @@ class USGSDataResource implements ResourceInterface, DangerLevelDetector
             $properties = $earthquake['properties'];
             $magnitude = $properties['mag'];
             $coordinates = $earthquake['geometry']['coordinates'];
-            $earthquake = new Earthquake($coordinates[1], $coordinates[0]);
+            $updatedTime = (new \DateTime())->setTimestamp((int)((int)$properties['updated'] / 1000));
+            $earthquake = new Earthquake($coordinates[1], $coordinates[0], $updatedTime);
             if ($magnitude) {
                 $radius = $this->calculateRadius($magnitude);
                 $level = $this->detectDangerLevel($magnitude);

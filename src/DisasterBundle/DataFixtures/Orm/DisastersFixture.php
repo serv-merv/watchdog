@@ -98,7 +98,7 @@ class DisastersFixture extends AbstractFixture
 
         /** @var array $disaster */
         foreach ($disasters as $disaster) {
-            $instance = new Disaster($disaster['lat'], $disaster['long']);
+            $instance = new Disaster($disaster['lat'], $disaster['long'], new \DateTime());
             $instance->setDescription($disaster['description']);
             $instance->setSafeDistance($disaster['safe']);
             $instance->setWarningDistance($disaster['warning']);

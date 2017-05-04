@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DisasterBundle\Entity;
 
 
+use DisasterBundle\Dto\DisasterDto;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -78,5 +79,15 @@ class Earthquake extends Disaster
     public function setDetail(string $detail)
     {
         $this->detail = $detail;
+    }
+
+    /**
+     * @return DisasterDto
+     */
+    public function toDto(): DisasterDto
+    {
+        $dto = parent::toDto();
+        $dto->type = 'Earthquake';
+        return $dto;
     }
 }

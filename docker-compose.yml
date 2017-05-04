@@ -4,6 +4,7 @@ nginx:
        - 7777:80
    links:
        - php
+#       - nodejs
    volumes:
        - .:/app
 
@@ -27,5 +28,9 @@ php:
        - .:/app
    links:
        - database
-
    working_dir: /app
+
+#nodejs:
+#    build: frontend
+#    ports:
+#        - 9002:9002

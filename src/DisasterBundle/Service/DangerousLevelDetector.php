@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DisasterBundle\Service;
 
 use DisasterBundle\Dto\CoordinatesDto;
+use DisasterBundle\Dto\DisasterDto;
 use DisasterBundle\Entity\Disaster;
 use DisasterBundle\Enum\DisasterSafetyLevelEnum;
 use Doctrine\ORM\EntityManager;
@@ -15,7 +16,7 @@ use Doctrine\ORM\EntityManager;
  */
 class DangerousLevelDetector implements DangerousLevelDetectorInterface
 {
-    private const RECOGNIZE_DISTANCE = 150;
+    private const RECOGNIZE_DISTANCE = 50;
 
     /** @var HaversineFormulaCalculator */
     private $calculator;
@@ -55,10 +56,15 @@ class DangerousLevelDetector implements DangerousLevelDetectorInterface
                 $disasterLevel = $this->getLevelByDistance($disaster, $distance);
                 $disasterDto = $disaster->toDto();
                 $disasterDto->dangerLevel = $disasterLevel;
-                $disasterDto->distanceTo = $distance;
+                $disasterDto->distanceTo = round($distance, 4);
                 $recognizedDisasters[] = $disasterDto;
             }
         }
+
+
+        usort($recognizedDisasters, function (DisasterDto $a, DisasterDto $b) {
+            return $a->distanceTo > $b->distanceTo;
+        });
         return $recognizedDisasters;
     }
 
