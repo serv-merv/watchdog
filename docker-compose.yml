@@ -4,7 +4,7 @@ nginx:
        - 7777:80
    links:
        - php
-#       - nodejs
+       - nodejs
    volumes:
        - .:/app
 
@@ -23,14 +23,17 @@ php:
    build: container/php-fpm
    ports:
        - 9000:9000
-       - 9002:9002
+       #- 9002:9002
    volumes:
        - .:/app
    links:
        - database
    working_dir: /app
 
-#nodejs:
-#    build: frontend
-#    ports:
-#        - 9002:9002
+nodejs:
+    build: frontend
+    ports:
+        - 9002:9002
+    volumes:
+        - ./frontend:/app
+    working_dir: /app

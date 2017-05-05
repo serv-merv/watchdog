@@ -42,7 +42,7 @@ class DisasterController extends Controller
         $json = $request->getContent();
         $coordinates = json_decode($json, true);
         $detector = $this->get('dangerous.level.detector');
-        $disasters = $detector->detect($coordinates['coordinates']['latitude'], $coordinates['coordinates']['longitude']);
+        $disasters = $detector->detect((float)$coordinates['coordinates']['latitude'], (float)$coordinates['coordinates']['longitude']);
         return new JsonResponse($disasters);
     }
 }

@@ -1,0 +1,40 @@
+version: '2'
+services:
+  nginx:
+     image: watchdogworld/nginx_image:latest
+     ports:
+         - 7777
+     links:
+         - php
+         - nodejs
+     environment:
+        - VIRTUAL_HOST=www.watchdog.app
+
+  database:
+     image: postgres:9.6-alpine
+     ports:
+         - 5432
+     environment:
+        POSTGRES_PASSWORD: watchdog
+        POSTGRES_DB: watchdog
+        POSTGRES_USER: watchdog
+
+  php:
+     image: watchdogworld/phpfpm_image:latest
+     ports:
+         - 9000
+     links:
+         - database
+
+  nodejs:
+     image: watchdogworld/nodejs_image:latest
+     ports:
+          - 9002
+
+  nginx-proxy:
+      image: jwilder/nginx-proxy
+      container_name: nginx-proxy
+      ports:
+        - "80:80"
+      volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro

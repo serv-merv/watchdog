@@ -33,7 +33,7 @@ prepare() {
         sed -i "s/group = .*/group = backend/" /usr/local/etc/php-fpm.d/www.conf
     fi
     # Not volumes, so need to be chowned
-    chown -R "$owner:backend" /app/var/
+    chown -R "backend:backend" /app/var/
 }
 
 runAsUser()

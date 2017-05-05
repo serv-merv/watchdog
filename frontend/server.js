@@ -7,7 +7,6 @@
     var url = require('url');
     var request = require('request');
     var path = require('path');
-    var reload = require('reload');
 
     var yargs = require('yargs').options({
         'port' : {
@@ -147,8 +146,6 @@
             console.log('Cesium development server running locally.  Connect to http://localhost:%d/', server.address().port);
         }
     });
-
-    reload(server, app);
 
     server.on('error', function (e) {
         if (e.code === 'EADDRINUSE') {
