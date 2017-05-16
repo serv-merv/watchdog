@@ -170,7 +170,7 @@
                         <th>Date and time</th>
                         <th>Distance</th>
                         <th>Type</th>
-                        <th>Risk</th>
+                        <th>Disaster level</th>
                     </tr>
                     </thead>
                     <tbody id="table-top-disasters-body">
@@ -241,7 +241,7 @@
                 }
             });
 
-            axios.post('http://www.watchdog.world/app_dev.php/detect/disasters', {
+            axios.post('http://www.watchdog.app:7777/app_dev.php/detect/disasters ', {
                 coordinates: {
                     latitude: latitude,
                     longitude: longitude
@@ -280,8 +280,8 @@
                         viewer.entities.add({
                             position: coords,
                             ellipse: {
-                                semiMinorAxis: item.safeZone * 10,
-                                semiMajorAxis: item.safeZone * 10,
+                                semiMinorAxis: item.safeZone * 100,
+                                semiMajorAxis: item.safeZone * 100,
                                 height: 0,
                                 material: Cesium.Color.GREEN.withAlpha(0.5),
                             }
@@ -289,8 +289,8 @@
                         viewer.entities.add({
                             position: coords,
                             ellipse: {
-                                semiMinorAxis: item.warningZone * 10,
-                                semiMajorAxis: item.warningZone * 10,
+                                semiMinorAxis: item.warningZone * 100,
+                                semiMajorAxis: item.warningZone * 100,
                                 height: 0,
                                 material: Cesium.Color.YELLOW.withAlpha(0.5),
                             }
@@ -298,8 +298,8 @@
                         viewer.entities.add({
                             position: coords,
                             ellipse: {
-                                semiMinorAxis: item.dangerZone * 10,
-                                semiMajorAxis: item.dangerZone * 10,
+                                semiMinorAxis: item.dangerZone * 100,
+                                semiMajorAxis: item.dangerZone * 100,
                                 height: 0,
                                 material: Cesium.Color.RED.withAlpha(0.5),
                             }

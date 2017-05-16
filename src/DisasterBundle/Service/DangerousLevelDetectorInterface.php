@@ -18,7 +18,8 @@ interface DangerousLevelDetectorInterface
     /**
      * @param float $lat
      * @param float $long
+     * @param int $limit
      * @return mixed
      */
-    public function detect(float $lat, float $long);
+    public function detect(float $lat, float $long, int $limit = 5);
 }

@@ -177,7 +177,7 @@ class Disaster
     /**
      * @return float
      */
-    public function getSafeDistance(): float
+    public function getSafeDistance(): ?float
     {
         return $this->safeDistance;
     }

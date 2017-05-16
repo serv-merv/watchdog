@@ -23,13 +23,16 @@ class DisasterController extends Controller
     {
         return new JsonResponse([
             'info' => 'Welcome to Watchdog WEB application. To use it please send request to route /detect/disasters',
-            'request' => $this->get('serializer')->serialize(
-                [
-                    'coordinates' => [
-                        'latitude' => 12,
-                        'longitude' => 12
-                    ]
-                ], 'json'),
+            'requests' => [
+                'Post request to detect disasters' => $this->get('serializer')->serialize(
+                    [
+                        'coordinates' => [
+                            'latitude' => 12,
+                            'longitude' => 12
+                        ]
+                    ], 'json'),
+                'Limit parameter for detecting disasters' => 'url/some/some?limit=5'
+            ]
         ]);
     }
 
@@ -39,10 +42,15 @@ class DisasterController extends Controller
      */
     public function detectDisasterAction(Request $request)
     {
+        $limit = $request->query->getInt('limit');
         $json = $request->getContent();
         $coordinates = json_decode($json, true);
         $detector = $this->get('dangerous.level.detector');
-        $disasters = $detector->detect((float)$coordinates['coordinates']['latitude'], (float)$coordinates['coordinates']['longitude']);
+        if ($limit) {
+            $disasters = $detector->detect((float)$coordinates['coordinates']['latitude'], (float)$coordinates['coordinates']['longitude'], $limit);
+        } else {
+            $disasters = $detector->detect((float)$coordinates['coordinates']['latitude'], (float)$coordinates['coordinates']['longitude']);
+        }
         return new JsonResponse($disasters);
     }
 }

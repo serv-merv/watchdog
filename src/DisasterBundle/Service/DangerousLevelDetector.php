@@ -16,49 +16,42 @@ use Doctrine\ORM\EntityManager;
  */
 class DangerousLevelDetector implements DangerousLevelDetectorInterface
 {
-    private const RECOGNIZE_DISTANCE = 50;
-
-    /** @var HaversineFormulaCalculator */
-    private $calculator;
-
     /** @var EntityManager */
     private $entityManager;
 
     /**
      * DangerousLevelDetector constructor.
-     * @param HaversineFormulaCalculator $calculator
      * @param EntityManager $entityManager
      */
-    public function __construct(
-        HaversineFormulaCalculator $calculator,
-        EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->calculator = $calculator;
         $this->entityManager = $entityManager;
     }
 
-    public function detect(float $lat, float $long)
+    /**
+     * @param float $lat
+     * @param float $long
+     * @param int $limit
+     * @return array
+     */
+    public function detect(float $lat, float $long, int $limit = 5)
     {
         $disasterRepository = $this->entityManager->getRepository('DisasterBundle:Disaster');
-        $disasters = $disasterRepository->findAll();
+        $disastersData = $disasterRepository->findWithLimitAndCurrentPosition($lat, $long, $limit);
+        $disasters = [];
+        foreach ($disastersData as $disaster) {
+            $disasters[$disaster['disaster_distance']] = $disasterRepository->find($disaster['disaster_id']);
+        }
         $recognizedDisasters = [];
 
         /** @var Disaster $disaster */
-        foreach ($disasters as $key => $disaster) {
-            $toDto = new CoordinatesDto();
-            $toDto->latitude = $disaster->getLatitude();
-            $toDto->longitude = $disaster->getLongitude();
-            $fromDto = new CoordinatesDto();
-            $fromDto->latitude = $lat;
-            $fromDto->longitude = $long;
-            $distance = $this->calculator->calculate($toDto, $fromDto);
-            if ($distance < static::RECOGNIZE_DISTANCE) {
-                $disasterLevel = $this->getLevelByDistance($disaster, $distance);
-                $disasterDto = $disaster->toDto();
-                $disasterDto->dangerLevel = $disasterLevel;
-                $disasterDto->distanceTo = round($distance, 4);
-                $recognizedDisasters[] = $disasterDto;
-            }
+        foreach ($disasters as $distance => $disaster) {
+            $distance = (float)$distance;
+            $disasterLevel = $this->getLevelByDistance($disaster, $distance);
+            $disasterDto = $disaster->toDto();
+            $disasterDto->dangerLevel = $disasterLevel;
+            $disasterDto->distanceTo = round($distance, 4);
+            $recognizedDisasters[] = $disasterDto;
         }
 
 
