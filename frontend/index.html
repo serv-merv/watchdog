@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description"
+          content="Watchdog fast and quality information that in critical situation can save your live">
+    <meta name="author" content="BostonLeeK">
+
+    <title>Watchdog - information that saves lives</title>
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16"/>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+    <div class="col-md-12 header">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 logo-header"><a href="/"><img src="img/logo.png"></a></div>
+        <div class="col-md-3 right">
+            <div>
+                <a target="_blank" href="https://www.facebook.com/nasawatchdog/"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" href="https://www.youtube.com/channel/UCfpet54fTGPHkMdUzC4GiJw/featured"><i
+                        class="fa fa-youtube"></i></a>
+                <a href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
+                <a href="javascript:void(0)"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 content">
+        <div class="col-md-3 left">
+            <div>
+                <br/><br/>
+                <p>Your location</p>
+                <strong>kiev, ukraine <i class="flags f-ua"></i></strong>
+                <br/><br/><br/>
+                <p class="geoposition">latitude: <a href="javascript:void(0)"><span class="latitude">50°23'N</span></a></p>
+                <p class="geoposition">longitude: <a href="javascript:void(0)"><span class="longitude">50°23'N</span></a></p>
+                <br/><br/>
+                <div class="status-tab"><strong>You are safe!</strong></div>
+                <div class="feed-bar">
+                    <ul>
+                        <!--<li>Confirmed #tornado in Chatham County, GA, just now. Image from Wilmington Island, outside of Savannah. Pic: Keli Watford Lowman @StormHour-->
+                        <!--<div class="feed-type"><a target="_blank" href="https://twitter.com/MattDevittWINK/status/867142704672714752"><i class="fa fa-twitter"></i></a><a href="javascript:void(0)"><i class="fa fa-image"></i></a><a href="javascript:void(0)"><i class="fa fa-video-camera"></i></a></div>-->
+                        <!--</li>-->
+                        <!--<li>#Tornado north of Seiling, OK #ok-->
+                        <!--<div class="feed-type"><a target="_blank" href="https://twitter.com/MattDevittWINK/status/867142704672714752"><i class="fa fa-twitter"></i></a><a href="javascript:void(0)"><i class="fa fa-image"></i></a></div>-->
+                        <!--</li>-->
+                        <!--<li>Clip of rotating wall cloud in northern Iredell County from Micah Wilson, reported seeing debris at base. #tornado http://bit.ly/2qXz2yc-->
+                        <!--<div class="feed-type"><a target="_blank" href="https://twitter.com/AlConklin/status/867494487903395842"><i class="fa fa-twitter"></i></a><a href="javascript:void(0)"><i class="fa fa-video-camera"></i></a></div>-->
+                        <!--</li>-->
+                        <!--<li>TORNADO: southwest of Weatherford, OK earlier with street sign ripped from the ground inside rope #tornado! @breakingweather #okwx</li>-->
+                        <!--<li>A #tornado reported today in Sampson County near Clinton, NC. Mobile home overturned. Injuries reported. #ncwx</li>-->
+                        <!--<li>Amazing #tornado warned storm at 7:25pm near Alva, OK #okwx @spann @USTornadoes</li>-->
+                        <!--<li>Here's a look at the #tornado in Galveston, TX this midday, from Jamaica Beach area at the Silver Leaf Resort. #KHOU11</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 main-container">
+            <div id='map' style='width: 100%; height: 100%;'></div>
+            <a id="resizeWindow" href="javascript:void(0)"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-3 right">
+            <div class="panel-collapse collapse in">
+                <br/><br/>
+                <p>Disasters near you</p>
+                <table class="disasters-table">
+                    <tr>
+                        <th class="first" width="100">Distance</th>
+                        <th width="50">Type</th>
+                        <th width="50">When</th>
+                    </tr>
+                    <!--<tr class="list active">-->
+                    <!--<td class="first" width="100">105 <sup>KM</sup> <p>Lodz, poland</p></td>-->
+                    <!--<td width="50"><i class="type-disaster f-flood"></i></td>-->
+                    <!--<td width="50">now</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="list">-->
+                    <!--<td class="first" width="100">486 <sup>KM</sup> <p>Prague, czech</p></td>-->
+                    <!--<td width="50"><i class="type-disaster f-volcano"></i></td> -->
+                    <!--<td width="50">22 now</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="list">-->
+                    <!--<td class="first" width="100" height="60">7280 <sup>KM</sup> <p>molokai, hawaii</p></td>-->
+                    <!--<td width="50"><i class="type-disaster f-tornado"></i></td> -->
+                    <!--<td width="50">24 apr 2018</td>-->
+                    <!--</tr>-->
+                </table>
+
+                <br/><br/>
+                <div class="news-tab">
+                    <p>About Watchdog app</p>
+                    <div class="promo-block">
+                        <div><a data-toggle="modal" data-target="#infoModal" href="javascript:void(0)"><img
+                                src="img/prev_image.jpg" width="100%"></a>
+                        </div>
+                        <br/>
+                        <p style="text-transform: none;">We’ve developed the data analysis system that gathers
+                            information from NASA open API, special services and other sources like social networks. It
+                            can process data using
+                            the semantic kernel and generate relevant database of natural disasters around the world.
+                            Additionally one can moderate the information.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 footer">
+        <div class="col-md-3 left">
+            <strong>© 2017 Watchdog</strong>
+            <p style="text-transform:uppercase">Information that saves lives</p>
+        </div>
+        <div class="col-md-6 center">
+            <div class="button-googleplay"><a target="_blank"
+                                              href="https://play.google.com/store/apps/details?id=watchdog.watchdog"><img
+                    src="img/gp.png"></a></div>
+        </div>
+        <div class="col-md-3 logo-spaceapps">
+            <a target="_blank"
+               href="https://2017.spaceappschallenge.org/challenges/warning-danger-ahead/when-landslides-strike/teams/watchdog-1/project"><img
+                    src="img/spaceapps.png"></a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="img/close.png">
+                </button>
+                <h2 class="modal-title" id="myModalLabel">more info about watchdog app + promo video</h2>
+                <p>With our app you will be safe.</p>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-8">
+                    <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/04pkyz5IXrE?rel=0&amp;showinfo=0" frameborder="0"
+                            allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12 scrollable">
+                        <div>
+                            <h4>Motivation</h4>
+                            <P> Every day, each of us is at risk of dying from a natural disaster, cataclysm,
+                                terrorism. </P>
+                            <P> By the time you read this text in the world of natural disasters, 12 people will
+                                die. </P>
+                            <P> In 2004, on December 26 in Indonesia, the tsunami killed more than 225,000. None of them
+                                was warned in time about the impending disaster. </P>
+                            <P> Since 2005, there has been a tendency to form information centers, and to collect
+                                analytical data. They work slowly, costly, limited locally and do not have access to
+                                global databases. </P>
+                            <P> In 2006, in the same Indonesia, it was possible to predict the approach of the tsunami
+                                and thanks to the warning, 12,800 people were rescued. This is 64% of the risk group
+                                (20,000). </P>
+                            <P> Just a timely notification of people about the impending disaster can reduce the number
+                                of victims at times. </P>
+                            <P> Based on studies conducted in recent years, the number of incidents will only grow. </P>
+                            <h4>Solution</h4>
+                            <P> We decided to develop a system for monitoring accidents and natural disasters, which
+                                promptly notifies people at risk for life and instructs them to protect and rescue
+                                through mobile phones and portable devices. The system aggregates and analyzes data from
+                                open sources, API, social networks. Data can be further moderated by employees of
+                                special services. Also, through the mobile application, people can report new incidents,
+                                adjust evacuation plans and coordinate missions for rescue and assistance to the
+                                victims. Only with the timely notification of a potential victim, the probability of
+                                death decreases by more than 2 times. </P>
+                            <h4>Server-side</h4>
+                            <P> The system aggregates data received from NASA services with open data. Monitor </p>
+                            <h4>Client-side</h4>
+                            <P> You are installing a mobile application that, based on your geolocation, informs you
+                                whether you are in a risk zone and, if so, instructs you about further action. You can
+                                tell all your friends and contacts whether you are in trouble or not. Do you need help
+                                and if so, which one. In case this is a false alarm, you can always give feedback, which
+                                will be taken into account when forming the rules and notification system. </P>
+                            <h4>Impact</h4>
+                            <h4>For rescue teams and victims:</h4>
+                            <p>The victims and rescue teams may be able to submit real-time reports of the disaster onto
+                                the platform in order to ask for adequate relief supplies. This website would also raise
+                                the public’s awareness of that specific disaster.</p>
+
+                            <h4>For the local government</h4>
+                            <p>With historical records and the monitoring page, high-risk areas can be identified.
+                                Development plans in those areas can be further assessed accordingly.</p>
+                            <p>When a landslide occurs, the real-time reports would improve the efficiency of all relief
+                                efforts and minimize death and property loss.</p>
+                            <p>After communicating with the authorities concerned, regulations can be established and
+                                implemented to help the government obtain funding for disaster relief.</p>
+                            <h4>For NASA</h4>
+                            <p>The open databases provided by various countries will help expand NASA’s own database.
+                                The betting system allows for the comparison of citizen betting and landslide prediction
+                                systems, which in turn help improve the quality of data prediction.</p>
+
+                            <h4>For the global community</h4>
+                            <p>The user is able to see landslide occurrences worldwide, and place bets if they wish to
+                                do so. This brings more attention to landslides occurring in other countries.</p>
+                            <p>When a disaster strikes, concerned citizens all over the world can pitch in and help out
+                                with disaster relief.</p>
+                            <p>We provide open source code to all who are interested in predicting and preventing
+                                landslides. We also welcome any collaboration opportunities. We hope our solution will
+                                raise the public’s awareness on natural disasters and climate change.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body-links">
+                <div class="col-md-12">
+                    <span>Extra links:</span> <span><a target="_blank"
+                                                       href="https://github.com/WorldWideWatchdog/world_wide_watchdog">GitHub</a> </span>
+                    <span><a target="_blank"
+                             href="https://docs.google.com/presentation/d/1XZ4PZXqsWEGQiYnAe9FffRGpNBhZM4CwNndtb4nh4-M/edit">Presentation</a> </span>
+                    <span><a target="_blank"
+                             href="https://drive.google.com/drive/u/1/folders/0B7XK9cHnxPf6aWVmbHhVSngxa2s">Press Materials</a> </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-1"><a target="_blank" href="https://www.facebook.com/nasawatchdog/"><i
+                        class="fa fa-facebook"></i></a></div>
+                <div class="col-md-1"><a target="_blank"
+                                         href="https://www.youtube.com/channel/UCfpet54fTGPHkMdUzC4GiJw/featured"><i
+                        class="fa fa-youtube"></i></a></div>
+                <div class="col-md-1"><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></div>
+                <div class="col-md-1"><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></div>
+                <div class="col-md-3"><a target="_blank"
+                                         href="https://play.google.com/store/apps/details?id=watchdog.watchdog"><img
+                        src="img/gp.png"></a></div>
+                <div class="col-md-3"><a target="_blank"
+                                         href="https://play.google.com/store/apps/details?id=watchdog.watchdog"><img
+                        src="img/gp.png"></a></div>
+                <div class="col-md-2"><a target="_blank"
+                                         href="https://2017.spaceappschallenge.org/challenges/warning-danger-ahead/when-landslides-strike/teams/watchdog-1/project"><img
+                        src="img/spaceapps.png"></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="node_modules/axios/dist/axios.min.js"></script>
+<script src="js/main.js"></script>
+<!-- custom scrollbar plugin -->
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function ($) {
+        $(window).on("load", function () {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiYm9zdG9ubGVlayIsImEiOiJjajMwMGJjZHAwMDBnMndvZjd0dndreGdvIn0.tGx8QT3EOyUPhi1_FDtPtQ';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/dark-v9'
+            });
+
+            $(".content .right > div,.content .left > div, .modal-body .scrollable").mCustomScrollbar();
+            let coordinates = getLocation();
+            let dcmLat = getDD2DMS(coordinates.lat, 'lat');
+            let dcmLong = getDD2DMS(coordinates.long, 'long');
+
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            el.addEventListener('click', function() {
+                window.alert(marker);
+            });
+
+            new mapboxgl.Marker(el)
+                .setLngLat([coordinates.lat, coordinates.long])
+                .addTo(map);
+
+            $('.latitude').html(dcmLat);
+            $('.longitude').html(dcmLong);
+        });
+    })(jQuery);
+
+    function getLocation() {
+        let data = null;
+        $.ajax({
+            url: 'https://freegeoip.net/json/',
+            type: 'GET',
+            async: false
+        }).done(function (response) {
+            data = response;
+        });
+        return {
+            lat: data.latitude,
+            long: data.longitude
+        };
+    }
+
+    function getDD2DMS(dms, type) {
+        let sign = 1, Abs = 0;
+        let days, minutes, direction;
+        if (dms < 0) {
+            sign = -1;
+        }
+        Abs = Math.abs(Math.round(dms * 1000000.));
+        if (type === "lat" && Abs > (90 * 1000000)) {
+            return false;
+        } else if (type === "lon" && Abs > (180 * 1000000)) {
+            return false;
+        }
+        days = Math.floor(Abs / 1000000);
+        minutes = Math.floor(((Abs / 1000000) - days) * 60);
+        days = days * sign;
+        if (type === 'lat') direction = days < 0 ? 'S' : 'N';
+        if (type === 'long') direction = days < 0 ? 'W' : 'E';
+        return (days * sign) + 'º' + minutes + "'" + direction;
+    }
+
+    $('#infoModal').on('shown.bs.modal', function () {
+        $(".button-googleplay").hide();
+    })
+
+    $('#infoModal').on('hidden.bs.modal', function () {
+        $(".button-googleplay").show();
+    })
+</script>
+</body>
+</html>

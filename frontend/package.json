@@ -7,14 +7,15 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "cesium": "^1.33.0",
     "body-parser": "latest",
+    "cesium": "^1.33.0",
+    "compression": "latest",
     "express": "latest",
     "morgan": "latest",
     "path": "latest",
     "request": "latest",
-    "compression": "latest",
-    "yargs": "latest"
+    "yargs": "latest",
+    "dms-conversion": "latest"
   },
   "engines": {
     "node": ">=6"
