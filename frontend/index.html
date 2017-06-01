@@ -84,26 +84,15 @@
                 <br/><br/>
                 <p>Disasters near you</p>
                 <table class="disasters-table">
+                    <thead>
                     <tr>
                         <th class="first" width="100">Distance</th>
                         <th width="50">Type</th>
                         <th width="50">When</th>
                     </tr>
-                    <!--<tr class="list active">-->
-                    <!--<td class="first" width="100">105 <sup>KM</sup> <p>Lodz, poland</p></td>-->
-                    <!--<td width="50"><i class="type-disaster f-flood"></i></td>-->
-                    <!--<td width="50">now</td>-->
-                    <!--</tr>-->
-                    <!--<tr class="list">-->
-                    <!--<td class="first" width="100">486 <sup>KM</sup> <p>Prague, czech</p></td>-->
-                    <!--<td width="50"><i class="type-disaster f-volcano"></i></td> -->
-                    <!--<td width="50">22 now</td>-->
-                    <!--</tr>-->
-                    <!--<tr class="list">-->
-                    <!--<td class="first" width="100" height="60">7280 <sup>KM</sup> <p>molokai, hawaii</p></td>-->
-                    <!--<td width="50"><i class="type-disaster f-tornado"></i></td> -->
-                    <!--<td width="50">24 apr 2018</td>-->
-                    <!--</tr>-->
+                    </thead>
+                    <tbody id="table-top-disasters-body">
+                    </tbody>
                 </table>
 
                 <br/><br/>
@@ -271,7 +260,7 @@
     (function ($) {
         $(window).on("load", function () {
             mapboxgl.accessToken = 'pk.eyJ1IjoiYm9zdG9ubGVlayIsImEiOiJjajMwMGJjZHAwMDBnMndvZjd0dndreGdvIn0.tGx8QT3EOyUPhi1_FDtPtQ';
-            var map = new mapboxgl.Map({
+            let map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/dark-v9'
             });
@@ -281,19 +270,104 @@
             let dcmLat = getDD2DMS(coordinates.lat, 'lat');
             let dcmLong = getDD2DMS(coordinates.long, 'long');
 
-            var el = document.createElement('div');
-            el.className = 'marker';
-
-            el.addEventListener('click', function() {
-                window.alert(marker);
-            });
-
-            new mapboxgl.Marker(el)
-                .setLngLat([coordinates.lat, coordinates.long])
-                .addTo(map);
-
             $('.latitude').html(dcmLat);
             $('.longitude').html(dcmLong);
+            var geojson = {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "message": "Foo",
+                            "iconSize": [60, 60]
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [
+                                -66.324462890625,
+                                -16.024695711685304
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "message": "Bar",
+                            "iconSize": [50, 50]
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [
+                                -61.2158203125,
+                                -15.97189158092897
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "message": "Baz",
+                            "iconSize": [40, 40]
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [
+                                -63.29223632812499,
+                                -18.28151823530889
+                            ]
+                        }
+                    }
+                ]
+            };
+
+
+            $.ajax({
+                url: 'http://www.watchdog.app:7777/app_dev.php/detect/disasters?limit=5',
+                type: 'POST',
+                data: JSON.stringify({
+                    coordinates: {
+                        latitude:  coordinates.lat,
+                        longitude:  coordinates.long
+                    }
+                }),
+            }).done(function (response) {
+                response.forEach(function(item, i, array) {
+                    // add markers to map
+                    geojson.features.forEach(function(marker) {
+                        // create a DOM element for the marker
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+                        el.style.backgroundImage = 'url(https://www.iconfinder.com/data/icons/small-n-flat/24/map-marker-128.png)';
+                        el.style.width = '20px';
+                        el.style.height = '20px';
+
+                        el.addEventListener('click', function() {
+                            window.alert('Marker was clicked');
+                        });
+
+                        // add marker to map
+                        new mapboxgl.Marker(el, {offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]})
+                            .setLngLat([item.longitude, item.latitude])
+                            .addTo(map);
+                    });
+
+                    let disasterType = 'type-disaster f-flood';
+                    let active = '';
+                    if (item.type === 'Earthquake') {
+                        disasterType = 'type-disaster f-volcano';
+                    }
+                    if (i === 0) {
+                        active = 'list active';
+                    }
+                    $('#table-top-disasters-body').append(
+                    '<tr class="' + active + '">' +
+                        '<td class="first" width="100">' + item.distanceTo + '<sup>KM</sup> <p>' + item.description + '</p></td>' +
+                        '<td width="50"><i class="' + disasterType + '"></i></td>' +
+                        '<td width="50">' + item.time + '</td>' +
+                        '</tr>'
+                    );
+                });
+            });
         });
     })(jQuery);
 
